@@ -11,20 +11,22 @@
  */
 class Solution {
 public:
-    void isValid(TreeNode*root,vector<long long>&temp){
-        if(root==NULL){
-            return ;
+    bool valid(TreeNode*root,TreeNode*min,TreeNode*max){
+        if(root==nullptr){
+            return true;
         }
-        isValid(root->left,temp);
-        temp.push_back(root->val);
-        isValid(root->right,temp);    
+        if(min!=NULL && root->val<=min->val){
+            return false;
+        }if(max!=NULL && root->val>=max->val){
+            return false;
+        }
+
+        return valid(root->left,min,root)&&
+                valid(root->right,root,max);
+        
     }
     bool isValidBST(TreeNode* root) {
-    vector<long long>temp;
-     isValid(root,temp);
-    for(int i=1;i<temp.size();i++){
-        if(temp[i-1]>=temp[i]) return false;
-    }
-    return true;
+        long long data=root->val;
+        return valid(root,NULL,NULL);
     }
 };
