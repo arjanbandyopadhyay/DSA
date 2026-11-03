@@ -5,6 +5,9 @@ public:
         vector<int>ans(n,-1);
         stack<int>s;
         for(int i=n-1;i>=0;i--){
+            while(!s.empty() && s.top()<=nums[i]){
+                s.pop();
+            }
             s.push(nums[i]);
         }
 
