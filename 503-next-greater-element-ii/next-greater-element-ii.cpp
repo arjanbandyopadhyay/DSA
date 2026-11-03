@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>ans(n,-1);
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<i+n;j++){
+                int idx=j%n;
+                if(nums[i]<nums[idx]){
+                    ans[i]=nums[idx];
+                    break;
+                }
+            }
+        }
+        return ans;
+
+    }
+};
