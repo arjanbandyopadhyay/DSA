@@ -10,7 +10,6 @@ public:
                 power-=tokens[i];
                 score++;
                 i++;
-                ans=max(ans,score);
             }
             else if(score>=1){
                     score--;
@@ -20,6 +19,7 @@ public:
             else{
                 break;
             }
+            ans=max(ans,score);
         }
         return ans; 
     }
