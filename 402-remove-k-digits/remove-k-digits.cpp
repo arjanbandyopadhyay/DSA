@@ -1,32 +1,27 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-      stack<int>s;
-      int remove=k;
-      for(int i=0;i<num.size();i++){
-        while(!s.empty() && s.top()>num[i] && remove > 0){
-            s.pop();
-            remove--;
+        deque<int>dq;
+        for(int i=0;i<num.size();i++){
+            while(!dq.empty() && k>0 && dq.back()>num[i]){
+                k--;
+                dq.pop_back();
+            }
+            dq.push_back(num[i]);
         }
-        s.push(num[i]);
-      }
-      while (remove > 0) {
-            s.pop();
-            remove--;
+        while(k>0){
+            dq.pop_back();
+            k--;
         }
-      string ans="";
-      while(!s.empty()){
-        ans+=s.top();
-        s.pop();
-      } 
-      reverse(ans.begin(),ans.end());
-      int i=0;
-       while (i < ans.size() && ans[i] == '0') {
-            i++;
-        }
-            ans=ans.substr(i);
+         while(!dq.empty() && dq.front()=='0') dq.pop_front();
+
+        string ans="";
         
+        while(!dq.empty()){
+            ans+=dq.front();
+            dq.pop_front();
+        }
+        return ans.empty()? "0":ans;
         
-      return ans.empty() ? "0" : ans; 
     }
 };
