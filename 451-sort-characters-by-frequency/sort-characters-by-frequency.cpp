@@ -8,7 +8,7 @@ public:
         }
         vector<pair<char,int>>vec;
         for(auto it:m){
-            vec.push_back({it.first,it.second});
+            vec.push_back(it);
         }
          sort(vec.begin(), vec.end(),
              [](auto &a, auto &b) {
