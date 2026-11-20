@@ -16,13 +16,14 @@ public:
        ListNode*nxt=nullptr;
        int count=0;
        while(curr!=nullptr){
-        count++;
-        if(count==a){
+        
+        if(count==a-1){
             pre=curr;
         }
-        else if(count-1==b){
-            nxt=curr->next;
+        else if(count==b+1){
+            nxt=curr;
         }
+        count++;
         curr=curr->next;
        } 
        ListNode*tail=list2;
